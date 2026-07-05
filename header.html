@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+    <div class="container navbar">
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <span>Biện</span>PhươngVy<span class="dot">.</span>
+        </a>
+
+
+
+
+        <!-- Menu -->
+       <nav>
+    <span class="nav-indicator"></span>
+    <ul>
+        <li><a class="active" href="index.html">Trang chủ</a></li>
+        <li><a href="about.html">Giới thiệu</a></li>
+        <li><a href="#skills">Kỹ năng</a></li>
+        <li><a href="#projects">Dự án</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+</nav>
+       
+
+
+        <!-- Right -->
+
+
+        <div class="nav-action">
+            <button class="btn-download">
+                <i class="fa-solid fa-download"></i>
+                Tải CV
+            </button>
+
+
+            <button class="btn-connect">
+                <i class="fa-solid fa-paper-plane"></i>
+                Kết nối
+            </button>
+
+
+    </div>
+
+
+</div>
+
+
+        </div>
+
+
+    </div>
+
+
+</header>
+
+/*=========================================
+            SAKURA EFFECT
+=========================================*/
+
+
+
+<script>
+const container = document.getElementById("sakura-container");
+function createPetal(){
+    const petal = document.createElement("div");
+    petal.className = "sakura";
+    petal.innerHTML = "🌸";
+    petal.style.left = Math.random()*100 + "vw";
+    petal.style.fontSize = (15 + Math.random()*15) + "px";
+    // petal.style.fontSize = (16 + Math.random()*18) + "px";
+    petal.style.animationDuration = (8 + Math.random()*8) + "s";
+    petal.style.opacity = 0.08 + Math.random()*0.12;
+    // petal.style.opacity = 0.3 + Math.random()*0.5;
+    container.appendChild(petal);
+    setTimeout(()=>{
+        petal.remove();
+    },16000);
+}
+setInterval(createPetal,450);
+
+
+function createBubble(){
+    const bubble = document.createElement("div");
+    bubble.className = "sakura";
+    bubble.innerHTML = "🫧";
+    bubble.style.left = Math.random()*100 + "vw";
+    bubble.style.fontSize = (15 + Math.random()*15) + "px";
+    bubble.style.animationDuration = (10 + Math.random()*8) + "s";
+    bubble.style.opacity = .2;
+    container.appendChild(bubble);
+    setTimeout(()=>{
+        bubble.remove();
+    },18000);
+}
+setInterval(createBubble,900);
+
+
+/*=========================================
+            LEAF EFFECT
+=========================================*/
+
+
+// const leaves = ["🍃","🍂"];
+const leaves = ["🌿","🍃","🌿","🍃", "🌰"];
+function createLeaf(){
+    const leaf = document.createElement("div");
+    leaf.className = "leaf";
+    leaf.innerHTML = leaves[Math.floor(Math.random()*leaves.length)];
+    leaf.style.left = Math.random()*100 + "vw";
+    leaf.style.fontSize = (15 + Math.random()*15) + "px";
+    leaf.style.animationDuration = (12 + Math.random()*8) + "s";
+    leaf.style.opacity = 0.2 + Math.random()*0.3;
+    container.appendChild(leaf);
+    leaf.addEventListener("animationend",()=>{
+        leaf.remove();
+    });
+
+
+}
+
+
+// Tạo lá mỗi 1.5 giây
+setInterval(createLeaf,1500);
+
+
+for(let i=0;i<8;i++){
+    setTimeout(createLeaf,i*300);
+}
+
+
+</script>
+</body>
+</html>

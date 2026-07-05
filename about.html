@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biên Phương Vy | Portfolio</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.html">
+    <link rel="stylesheet" href="css/trangchu.css">
+    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="css/about.css">
+
+</head>
+
+
+<body>
+
+  <!--======================================
+        SAKURA BACKGROUND
+=======================================-->
+
+<div id="sakura-container"></div>
+
+<!--==================================================
+                        HEADER
+===================================================-->
+<header>
+    <div class="container navbar">
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <span>Biện</span><span>PhươngVy</span><span class="dot">.</span>
+        </a>
+
+
+
+
+        <!-- Menu -->
+       <nav>
+    <span class="nav-indicator"></span>
+    <ul>
+        <li><a class="active" href="index.html">Trang chủ</a></li>
+        <li><a href="about.html">Giới thiệu</a></li>
+        <li><a href="#skills">Kỹ năng</a></li>
+        <li><a href="#projects">Dự án</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+</nav>
+       
+
+
+        <!-- Right -->
+
+
+        <div class="nav-action">
+            <button class="btn-download">
+                <i class="fa-solid fa-download"></i>
+                Tải CV
+            </button>
+
+
+            <button class="btn-connect">
+                <i class="fa-solid fa-paper-plane"></i>
+                Kết nối
+            </button>
+
+
+    </div>
+
+
+</div>
+
+
+        </div>
+
+
+    </div>
+
+
+</header>
+
+
+<script> 
+    const indicator = document.querySelector(".nav-indicator");
+    const navLinks = document.querySelectorAll("nav ul li a");
+function moveIndicator(item){
+    indicator.style.width = item.offsetWidth + "px";
+    indicator.style.height = item.offsetHeight + "px";
+    indicator.style.left = item.offsetLeft + "px";
+    indicator.style.top = item.offsetTop + "px";
+}
+
+// Mặc định
+moveIndicator(document.querySelector("nav a.active"));
+navLinks.forEach(link=>{
+    link.addEventListener("mouseenter",()=>{
+        moveIndicator(link);
+    });
+
+    link.addEventListener("click",()=>{
+        navLinks.forEach(a=>a.classList.remove("active"));
+        link.classList.add("active");
+    });
+});
+
+document.querySelector("nav").addEventListener("mouseleave",()=>{
+    moveIndicator(document.querySelector("nav a.active"));
+});
+
+/*=========================================
+            SAKURA EFFECT
+=========================================*/
+
+const container = document.getElementById("sakura-container");
+function createPetal(){
+    const petal = document.createElement("div");
+    petal.className = "sakura";
+    petal.innerHTML = "🌸";
+    petal.style.left = Math.random()*100 + "vw";
+    petal.style.fontSize = (15 + Math.random()*15) + "px";
+    // petal.style.fontSize = (16 + Math.random()*18) + "px";
+    petal.style.animationDuration = (8 + Math.random()*8) + "s";
+    petal.style.opacity = 0.08 + Math.random()*0.12;
+    // petal.style.opacity = 0.3 + Math.random()*0.5;
+    container.appendChild(petal);
+    setTimeout(()=>{
+        petal.remove();
+    },16000);
+}
+setInterval(createPetal,450);
+
+function createBubble(){
+    const bubble = document.createElement("div");
+    bubble.className = "sakura";
+    bubble.innerHTML = "🫧";
+    bubble.style.left = Math.random()*100 + "vw";
+    bubble.style.fontSize = (15 + Math.random()*15) + "px";
+    bubble.style.animationDuration = (10 + Math.random()*8) + "s";
+    bubble.style.opacity = .2;
+    container.appendChild(bubble);
+    setTimeout(()=>{
+        bubble.remove();
+    },18000);
+}
+setInterval(createBubble,900);
+
+/*=========================================
+            LEAF EFFECT
+=========================================*/
+
+// const leaves = ["🍃","🍂"];
+const leaves = ["🌿","🍃","🌿","🍃", "🌰"];
+function createLeaf(){
+    const leaf = document.createElement("div");
+    leaf.className = "leaf";
+    leaf.innerHTML = leaves[Math.floor(Math.random()*leaves.length)];
+    leaf.style.left = Math.random()*100 + "vw";
+    leaf.style.fontSize = (15 + Math.random()*15) + "px";
+    leaf.style.animationDuration = (12 + Math.random()*8) + "s";
+    leaf.style.opacity = 0.2 + Math.random()*0.3;
+    container.appendChild(leaf);
+    leaf.addEventListener("animationend",()=>{
+        leaf.remove();
+    });
+
+}
+
+// Tạo lá mỗi 1.5 giây
+setInterval(createLeaf,1500)
+
+for(let i=0;i<8;i++){
+    setTimeout(createLeaf,i*300);
+}
+
+
+/*=========================================================
+                    SCROLL ANIMATION
+=========================================================*/
+
+const observer = new IntersectionObserver((entries)=>{
+
+    entries.forEach((entry)=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+},{
+    threshold:.2
+});
+
+document.querySelectorAll(
+
+".hero-left,.hero-right,.vision-card,.quote-card,.timeline-item,.gallery img,.number-box"
+
+).forEach(el=>{
+
+    el.classList.add("fade-up");
+
+    observer.observe(el);
+
+});
+
+
+/*=========================================================
+                    COUNTER
+=========================================================*/
+
+const counters=document.querySelectorAll(".number-box h2");
+
+let counted=false;
+
+window.addEventListener("scroll",()=>{
+
+const section=document.querySelector(".hero-number");
+
+const top=section.getBoundingClientRect().top;
+
+if(top<window.innerHeight&& !counted){
+
+counted=true;
+
+counters.forEach(counter=>{
+
+let target=parseInt(counter.innerText);
+
+let count=0;
+
+let speed=target/40;
+
+const update=()=>{
+
+count+=speed;
+
+if(count<target){
+
+counter.innerText=Math.floor(count)+"+";
+
+requestAnimationFrame(update);
+
+}else{
+
+counter.innerText=target+"+";
+
+}
+
+}
+
+update();
+
+});
+
+}
+
+});
+
+
+/*=========================================================
+                    CARD 3D
+=========================================================*/
+
+const cards=document.querySelectorAll(
+
+".vision-card,.quote-card,.timeline-item"
+
+);
+
+cards.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+const rotateY=(x-rect.width/2)/18;
+
+const rotateX=-(y-rect.height/2)/18;
+
+card.style.transform=
+
+`perspective(1000px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+translateY(-8px)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="";
+
+});
+
+});
+
+
+/*=========================================================
+                    GALLERY
+=========================================================*/
+
+document.querySelectorAll(".gallery img").forEach(img=>{
+
+img.addEventListener("mouseenter",()=>{
+
+img.style.transform="scale(1.05)";
+
+});
+
+img.addEventListener("mouseleave",()=>{
+
+img.style.transform="scale(1)";
+
+});
+
+});
+
+
+/*=========================================================
+                    BACK TO TOP
+=========================================================*/
+
+const topBtn=document.createElement("div");
+
+topBtn.className="top-btn";
+
+topBtn.innerHTML='<i class="fa-solid fa-arrow-up"></i>';
+
+document.body.appendChild(topBtn);
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>500){
+
+topBtn.classList.add("active");
+
+}else{
+
+topBtn.classList.remove("active");
+
+}
+
+});
+
+topBtn.onclick=()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+
+/*=========================================================
+                    CURSOR GLOW
+=========================================================*/
+
+const glow=document.createElement("div");
+
+glow.className="cursor-glow";
+
+document.body.appendChild(glow);
+
+window.addEventListener("mousemove",(e)=>{
+
+glow.style.left=e.clientX+"px";
+
+glow.style.top=e.clientY+"px";
+
+});
+</script>
+
+
+<body>
+
+<!--=========================================
+            NAVBAR
+==========================================-->
+
+<!-- Dán nguyên navbar hiện tại của bạn vào đây -->
+
+
+
+<main>
+
+<!--=========================================
+            HERO
+==========================================-->
+
+<section class="about-hero">
+<div class="hero-left">
+    <img src="image/Gioithieu.JPG" alt="Bien Phuong Vy">
+</div>
+
+
+<div class="hero-right">
+    <span class="hero-tag">
+        <i class="fa-solid fa-sparkles"></i>
+        ABOUT ME
+    </span>
+    <h1>
+        Mọi thứ bắt đầu từ
+        <span>sự tò mò</span>
+        về công nghệ.
+    </h1>
+
+    <p>
+        Xin chào! Mình là <strong>Biên Phương Vy</strong>,
+        sinh viên ngành An toàn thông tin.
+
+        Mình yêu thích Web Development,
+        Linux, Networking và Cyber Security.
+
+        Mục tiêu của mình là tạo ra những sản phẩm
+        đẹp mắt, hữu ích và an toàn.
+    </p>
+
+
+<div class="hero-number">
+<div class="number-box">
+<h2>03+</h2>
+<span>Năm học tập</span>
+</div>
+
+
+<div class="number-box">
+<h2>15+</h2>
+<span>Dự án cá nhân</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!--=========================================
+            VISION
+==========================================-->
+
+<section class="vision">
+<div class="title">
+<span>ABOUT</span>
+<h2>Tầm nhìn & Mục tiêu</h2>
+<p>
+Không chỉ học để lấy điểm,
+mình luôn muốn xây dựng
+những sản phẩm thực tế.
+</p>
+
+</div>
+
+
+<div class="vision-grid">
+<div class="vision-card large">
+<i class="fa-solid fa-shield-halved"></i>
+<h3>Chuyên gia An toàn thông tin</h3>
+<p>
+Mục tiêu lâu dài của mình là trở thành
+một chuyên gia Cyber Security,
+đồng thời phát triển các sản phẩm Web
+đảm bảo hiệu năng và bảo mật.
+</p>
+
+<div class="tag-group">
+<span>Cyber Security</span>
+<span>Networking</span>
+<span>Linux</span>
+<span>Web</span>
+</div>
+</div>
+
+
+<div class="vision-card green">
+<i class="fa-solid fa-circle-check"></i>
+<h3>Luôn học hỏi</h3>
+<p>
+Không ngừng cập nhật công nghệ mới
+và phát triển bản thân mỗi ngày.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+                MY PHILOSOPHY
+==========================================-->
+
+<section class="philosophy section">
+
+    <div class="section-title">
+        <span>MY MINDSET</span>
+        <h2>Triết lý & Giá trị</h2>
+    </div>
+
+    <div class="philosophy-grid">
+
+        <!-- LEFT -->
+
+        <div class="philosophy-left">
+
+            <div class="quote-icon">
+                <i class="fa-solid fa-quote-left"></i>
+            </div>
+
+            <h3>
+                Công nghệ không chỉ là viết code.
+            </h3>
+
+            <p>
+
+                Mình tin rằng mỗi dòng code đều mang một ý nghĩa.
+                Không chỉ để chương trình hoạt động, mà còn để tạo ra
+                những sản phẩm hữu ích, an toàn và mang lại trải nghiệm
+                tốt nhất cho người dùng.
+
+            </p>
+
+            <div class="quote-line"></div>
+
+            <div class="signature">
+
+                <span>Bien Phuong Vy</span>
+
+                <small>Cyber Security • Web Developer</small>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="philosophy-right">
+
+            <div class="profile-card">
+
+                <img src="images/me2.jpg" alt="Bien Phuong Vy">
+
+                <h3>Giá trị cốt lõi</h3>
+
+                <p>
+                    Những điều mình luôn theo đuổi trong học tập và công việc.
+                </p>
+
+            </div>
+
+            <div class="value-list">
+
+                <div class="value-item">
+                    <span>💻</span>
+                    <div>
+                        <h4>Create</h4>
+                        <p>Xây dựng sản phẩm có giá trị.</p>
+                    </div>
+                </div>
+
+                <div class="value-item">
+                    <span>🌱</span>
+                    <div>
+                        <h4>Learn</h4>
+                        <p>Không ngừng học hỏi mỗi ngày.</p>
+                    </div>
+                </div>
+
+                <div class="value-item">
+                    <span>🚀</span>
+                    <div>
+                        <h4>Improve</h4>
+                        <p>Luôn tối ưu và phát triển bản thân.</p>
+                    </div>
+                </div>
+
+                <div class="value-item">
+                    <span>❤️</span>
+                    <div>
+                        <h4>Inspire</h4>
+                        <p>Lan tỏa năng lượng tích cực.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <section class="quote"> -->
+<!-- <div class="quote-card"> -->
+<!-- <i class="fa-solid fa-quote-left"></i> -->
+<!-- <h3>Triết lý của mình</h3> -->
+<!-- <p> -->
+<!-- "Công nghệ không chỉ là viết code. -->
+<!--  -->
+<!-- Điều quan trọng là tạo ra -->
+<!-- những giá trị thực sự cho mọi người." -->
+<!-- </p> -->
+<!-- <h4> -->
+<!-- — Bien Phuong Vy -->
+<!-- </h4> -->
+<!--  -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="quote-tags"> -->
+<!--  -->
+    <!-- <span>💻 Create</span> -->
+<!--  -->
+    <!-- <span>🌱 Learn</span> -->
+<!--  -->
+    <!-- <span>🚀 Improve</span> -->
+<!--  -->
+    <!-- <span>❤️ Inspire</span> -->
+<!--  -->
+<!-- </div> -->
+<!--  -->
+<!-- </section> -->
+
+
+
+<!--=========================================
+            HOBBY
+==========================================-->
+
+<section class="hobby">
+<div class="hobby-left">
+<span>MY LIFE</span>
+<h2>
+Ngoài công việc...
+</h2>
+<p>
+Bên cạnh học tập,
+mình thích chụp ảnh,
+đọc sách,
+thiết kế UI,
+nghe nhạc
+và chăm sóc cây.
+</p>
+<ul>
+<li>
+<i class="fa-solid fa-camera"></i>
+Chụp ảnh
+</li>
+<li>
+<i class="fa-solid fa-book"></i>
+Đọc sách
+</li>
+<li>
+<i class="fa-solid fa-palette"></i>
+Thiết kế UI
+</li>
+<li>
+<i class="fa-solid fa-music"></i>
+Nghe nhạc
+</li>
+<li>
+<i class="fa-solid fa-seedling"></i>
+Yêu thiên nhiên
+</li>
+</ul>
+</div>
+<div class="gallery">
+<img src="image/Gioithieu.JPG">
+<img src="image/contact-img.jpg">
+<img src="image/anh2.jpg">
+<img src="images/gallery4.jpg">
+</div>
+</section>
+
+
+
+<!--=========================================
+            TIMELINE
+==========================================-->
+
+<section class="timeline">
+<div class="title">
+<span>JOURNEY</span>
+<h2>
+Hành trình của mình
+</h2>
+</div>
+
+
+<div class="timeline-box">
+<div class="timeline-item">
+<h3>
+2024
+</h3>
+
+<p>
+Bắt đầu học
+Web Development
+và Linux.
+</p>
+</div>
+
+
+<div class="timeline-item">
+<h3>
+2025
+</h3>
+<p>
+
+Thực hiện nhiều đồ án
+Cisco,
+Firewall,
+Samba AD,
+Portfolio.
+</p>
+</div>
+
+
+<div class="timeline-item">
+<h3>
+2026
+</h3>
+<p>
+Hướng tới
+Frontend Developer
+kết hợp Cyber Security.
+</p>
+</div>
+</div>
+</section>
+</main>
+
+
+
+<!--==================================================
+                    FOOTER
+===================================================-->
+<footer>
+<div class="container footer">
+<p>
+© 2026 Biện Phương Vy
+</p>
+
+<p>
+Designed with ❤️ by Bien Phuong Vy
+</p>
+
+<div class="footer-sparkles">
+    <span>✨</span>
+    <span>⭐</span>
+    <span>✨</span>
+    <span>💖</span>
+    <span>⭐</span>
+</div>
+</div>
+
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+
+</html>

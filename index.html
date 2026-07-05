@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biên Phương Vy | Portfolio</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/trangchu.css">
+    <link rel="stylesheet" href="script.js">
+    <!--- About-->
+    <link rel="stylesheet" href="about.html">
+</head>
+
+<body>
+
+  <!--======================================
+        SAKURA BACKGROUND
+=======================================-->
+
+<div id="sakura-container"></div>
+
+<!--==================================================
+                        HEADER
+===================================================-->
+
+<header>
+    <div class="container navbar">
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <span>Biện</span><span>PhươngVy</span><span class="dot">.</span>
+        </a>
+
+
+        <!-- Menu -->
+       <nav>
+    <span class="nav-indicator"></span>
+    <ul>
+        <li><a class="active" href="index.html">Trang chủ</a></li>
+        <li><a href="about.html">Giới thiệu</a></li>
+        <li><a href="#skills">Kỹ năng</a></li>
+        <li><a href="#projects">Dự án</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+</nav>
+       
+
+        <!-- Right -->
+
+        <div class="nav-action">
+            <button class="btn-download">
+                <i class="fa-solid fa-download"></i>
+                Tải CV
+            </button>
+
+            <button class="btn-connect">
+                <i class="fa-solid fa-paper-plane"></i>
+                Kết nối
+            </button>
+
+    </div>
+
+</div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<script> 
+    const indicator = document.querySelector(".nav-indicator");
+    const navLinks = document.querySelectorAll("nav ul li a");
+function moveIndicator(item){
+    indicator.style.width = item.offsetWidth + "px";
+    indicator.style.height = item.offsetHeight + "px";
+    indicator.style.left = item.offsetLeft + "px";
+    indicator.style.top = item.offsetTop + "px";
+}
+
+// Mặc định
+moveIndicator(document.querySelector("nav a.active"));
+navLinks.forEach(link=>{
+    link.addEventListener("mouseenter",()=>{
+        moveIndicator(link);
+    });
+
+    link.addEventListener("click",()=>{
+        navLinks.forEach(a=>a.classList.remove("active"));
+        link.classList.add("active");
+    });
+});
+
+document.querySelector("nav").addEventListener("mouseleave",()=>{
+    moveIndicator(document.querySelector("nav a.active"));
+});
+
+/*=========================================
+            SAKURA EFFECT
+=========================================*/
+
+const container = document.getElementById("sakura-container");
+function createPetal(){
+    const petal = document.createElement("div");
+    petal.className = "sakura";
+    petal.innerHTML = "🌸";
+    petal.style.left = Math.random()*100 + "vw";
+    petal.style.fontSize = (15 + Math.random()*15) + "px";
+    // petal.style.fontSize = (16 + Math.random()*18) + "px";
+    petal.style.animationDuration = (8 + Math.random()*8) + "s";
+    petal.style.opacity = 0.08 + Math.random()*0.12;
+    // petal.style.opacity = 0.3 + Math.random()*0.5;
+    container.appendChild(petal);
+    setTimeout(()=>{
+        petal.remove();
+    },16000);
+}
+setInterval(createPetal,450);
+
+function createBubble(){
+    const bubble = document.createElement("div");
+    bubble.className = "sakura";
+    bubble.innerHTML = "🫧";
+    bubble.style.left = Math.random()*100 + "vw";
+    bubble.style.fontSize = (15 + Math.random()*15) + "px";
+    bubble.style.animationDuration = (10 + Math.random()*8) + "s";
+    bubble.style.opacity = .2;
+    container.appendChild(bubble);
+    setTimeout(()=>{
+        bubble.remove();
+    },18000);
+}
+setInterval(createBubble,900);
+
+/*=========================================
+            LEAF EFFECT
+=========================================*/
+
+// const leaves = ["🍃","🍂"];
+const leaves = ["🌿","🍃","🌿","🍃", "🌰"];
+function createLeaf(){
+    const leaf = document.createElement("div");
+    leaf.className = "leaf";
+    leaf.innerHTML = leaves[Math.floor(Math.random()*leaves.length)];
+    leaf.style.left = Math.random()*100 + "vw";
+    leaf.style.fontSize = (15 + Math.random()*15) + "px";
+    leaf.style.animationDuration = (12 + Math.random()*8) + "s";
+    leaf.style.opacity = 0.2 + Math.random()*0.3;
+    container.appendChild(leaf);
+    leaf.addEventListener("animationend",()=>{
+        leaf.remove();
+    });
+
+}
+
+// Tạo lá mỗi 1.5 giây
+setInterval(createLeaf,1500)
+
+for(let i=0;i<8;i++){
+    setTimeout(createLeaf,i*300);
+}
+
+</script>
+
+
+<!--==================================================
+                        HERO
+===================================================-->
+
+<section class="hero" id="home">
+<div class="container hero-grid">
+
+
+<!--================ LEFT =================-->
+
+<div class="hero-left">
+    <div class="hero-tag">
+        ✦ DIGITAL PORTFOLIO 2026
+    </div>
+
+    <h1>
+        Biện
+        <br>
+        <span>Phương Vy</span>
+    </h1>
+
+
+    <div class="quote">
+        <span></span>
+        <p>
+            "Không ngừng học hỏi, xây dựng hệ thống mạng an toàn
+            và phát triển các sản phẩm công nghệ có giá trị."
+        </p>
+    </div>
+
+
+    <div class="social">
+        <a href="#">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <a href="https://www.instagram.com/_phuongzyy_0805/" target = "_blank">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="#">
+            <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+
+        <a href="https://github.com/BienPhuongVy" target = "_blank">
+            <i class="fa-brands fa-github"></i>
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!--================ RIGHT =================-->
+
+<div class="hero-right">
+
+    <div class="image-border">
+
+        <div class="image-box">
+            <img src="image/anh2.jpg" alt="Biện Phương Vy">
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <p>
+            NETWORK • WEB • CYBERSECURITY
+        </p>
+
+        <h3>
+            Student 2026
+        </h3>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!--==================================================
+                    ABOUT
+===================================================-->
+
+<section id="about" class="about">
+<div class="container">
+    <div class="section-title">
+        <p>GIỚI THIỆU</p>
+        <h2>Đôi nét về bản thân</h2>
+    </div>
+
+    <div class="about-content">
+        <p>
+            Xin chào! Mình là <strong>Biên Phương Vy</strong>,
+            sinh viên ngành An toàn thông tin.
+            Mình yêu thích Quản trị mạng, Web Development,
+            Linux và Cybersecurity.
+        </p>
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!--==================================================
+                    SKILLS
+===================================================-->
+
+
+<div class="container">
+
+<div class="section-title">
+
+<p>KỸ NĂNG</p>
+<h2>Hệ sinh thái kỹ năng</h2>
+</div>
+
+<div class="skills-grid">
+<div class="skill-card">
+<i class="fa-solid fa-network-wired"></i>
+<h3>Cisco Networking</h3>
+</div>
+
+<div class="skill-card">
+<i class="fa-brands fa-linux"></i>
+<h3>Linux</h3>
+</div>
+
+<div class="skill-card">
+<i class="fa-solid fa-code"></i>
+<h3>Web Development</h3>
+</div>
+
+<div class="skill-card">
+<i class="fa-solid fa-shield-halved"></i>
+<h3>Cyber Security</h3>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!--==================================================
+                    PROJECT
+===================================================-->
+
+<section id="projects" class="projects">
+<div class="container">
+<div class="section-title">
+<p>DỰ ÁN</p>
+<h2>Dự án nổi bật</h2>
+</div>
+
+<div class="project-list">
+<div class="project-item">
+<h3>Website bán hoa</h3>
+<p>
+HTML • CSS • JavaScript • PHP
+</p>
+
+</div>
+<div class="project-item">
+<h3>Firewall Linux</h3>
+<p>
+Samba AD • VPN • DMZ
+</p>
+
+</div>
+<div class="project-item">
+<h3>Network Monitoring</h3>
+<p>
+Zabbix • Grafana • Prometheus
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================================
+                        CONTACT
+==========================================================-->
+
+<section class="contact section" id="contact">
+    <div class="section-title">
+        <span>CONTACT</span>
+        <h2>Let's Connect Together 🌸</h2>
+        <p>
+            Có ý tưởng thú vị hoặc muốn hợp tác?
+            Hãy để lại lời nhắn, mình sẽ phản hồi sớm nhất có thể.
+        </p>
+    </div>
+
+    <div class="contact-container">
+        <!--================ LEFT =================-->
+
+        <div class="contact-info">
+            <div class="profile-card">
+                <img src="image/contact-img.jpg" alt="Bien Phuong Vy">
+                <h3>Biện Phương Vy</h3>
+                <span>Web Developer • Cyber Security</span>
+                <p>
+                    Luôn sẵn sàng học hỏi,
+                    hợp tác và phát triển
+                    những dự án mới.
+                </p>
+
+                <a href="cv.pdf" class="download-btn">
+                    <i class="fa-solid fa-download"></i>
+                    Download CV
+                </a>
+            </div>
+
+            <div class="contact-list">
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>vybien.100805@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-brands fa-github"></i>
+                    <div>
+                        <a href="https://github.com/BienPhuongVy" target="_blank"><h4>Github</h4></a>
+                        <p>github.com/BienPhuongVy</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <p>linkedin.com/in/username</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-item">
+                    <i class="fa-brands fa-instagram"></i>
+                    <div>
+                        <a href="https://www.instagram.com/_phuongzyy_0805/" target = "_blank"><h4>Instagram</h4></a>
+                        <p>@phuongzyy_0805</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--================ RIGHT =================-->
+
+        <div class="contact-form">
+            <h3>
+                💌 Send Me A Message
+            </h3>
+
+            <form>
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input
+                        type="text"
+                        placeholder="Họ và tên">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input
+                        type="email"
+                        placeholder="Email">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-tag"></i>
+                    <input
+                        type="text"
+                        placeholder="Chủ đề">
+                </div>
+
+                <div class="input-box textarea">
+                    <i class="fa-solid fa-comment"></i>
+                    <textarea
+                        rows="6"
+                        placeholder="Nhập tin nhắn..."></textarea>
+                </div>
+
+                <button type="submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Gửi tin nhắn
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!--==================================================
+                    FOOTER
+===================================================-->
+
+<footer>
+<div class="container footer">
+<p>
+© 2026 Biện Phương Vy
+</p>
+
+<p>
+Designed with ❤️ by Bien Phuong Vy
+</p>
+
+<div class="footer-sparkles">
+    <span>✨</span>
+    <span>⭐</span>
+    <span>✨</span>
+    <span>💖</span>
+    <span>⭐</span>
+</div>
+</div>
+
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+
+</html>
